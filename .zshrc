@@ -103,4 +103,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias ed="~/dots/scripts/open-directory-with-nvim.sh ~/dots"
+alias en="~/dots/scripts/open-directory-with-nvim.sh ~/dots/nvim"
+alias eh="~/dots/scripts/open-directory-with-nvim.sh ~/dots/hypr"
+
 eval "$(zoxide init zsh)"

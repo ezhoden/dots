@@ -3,6 +3,7 @@
 dotfiles="$HOME/dots"
 
 configs=(
+	ags
 	hypr
 	kitty
 	nvim
