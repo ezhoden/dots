@@ -1,4 +1,5 @@
 const { query } = await Service.import("applications")
+
 const WINDOW_NAME = "applauncher"
 
 /** @param {import('resource:///com/github/Aylur/ags/service/applications.js').Application} app */
