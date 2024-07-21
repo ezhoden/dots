@@ -1,17 +1,21 @@
 window.bar {
-    background-color: @theme_bg_color;
-    color: @theme_fg_color;
+	border-radius: 8px;
+	background-color: @theme_bg_color;
+	color: @theme_fg_color;
 }
 
 button {
     min-width: 0;
     padding-top: 0;
     padding-bottom: 0;
-    background-color: transparent;
+    background: none;
+    border: none;
+	box-shadow: none;
 }
 
 button:active {
     background-color: @theme_selected_bg_color;
+	background: none;
 }
 
 button:hover {
@@ -22,16 +26,21 @@ label {
     font-weight: bold;
 }
 
+.workspaces {
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+.workspaces button {
+	border-radius: 0;
+}
+
 .workspaces button.focused {
-    border-bottom: 3px solid @theme_selected_bg_color;
+	background-color: @theme_selected_bg_color;
 }
 
 .client-title {
     color: @theme_selected_bg_color;
-}
-
-.notification {
-    color: yellow;
 }
 
 levelbar block,

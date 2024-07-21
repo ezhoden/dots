@@ -1,5 +1,4 @@
 const hyprland = await Service.import("hyprland")
-const notifications = await Service.import("notifications")
 const mpris = await Service.import("mpris")
 const audio = await Service.import("audio")
 const battery = await Service.import("battery")
@@ -14,24 +13,26 @@ const date = Variable("", {
 // then you can simply instantiate one by calling it
 
 function Workspaces() {
-    const activeId = hyprland.active.workspace.bind("id")
-    const workspaces = hyprland.bind("workspaces")
-        .as(ws => ws.map(({ id }) => Widget.Button({
-            on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
-            child: Widget.Label(`${id}`),
-            class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
-        })))
+	const activeId = hyprland.active.workspace.bind("id")
 
+	const workspaces = hyprland.bind("workspaces")
+		.as(ws => ws
+			.sort((a, b) => a.id - b.id)
+			.map(({ id }) => Widget.Button({
+				onClicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
+				child: Widget.Label(`${id}`),
+				className: activeId.as(i => `${i === id ? "focused" : ""}`),
+		})))
     return Widget.Box({
-        class_name: "workspaces",
-        children: workspaces,
+	    className: "workspaces",
+	    children: workspaces,
     })
 }
 
 
 function ClientTitle() {
     return Widget.Label({
-        class_name: "client-title",
+        className: "client-title",
         label: hyprland.active.client.bind("title"),
     })
 }
@@ -39,30 +40,10 @@ function ClientTitle() {
 
 function Clock() {
     return Widget.Label({
-        class_name: "clock",
+        className: "clock",
         label: date.bind(),
     })
 }
-
-
-// we don't need dunst or any other notification daemon
-// because the Notifications module is a notification daemon itself
-function Notification() {
-    const popups = notifications.bind("popups")
-    return Widget.Box({
-        class_name: "notification",
-        visible: popups.as(p => p.length > 0),
-        children: [
-            Widget.Icon({
-                icon: "preferences-system-notifications-symbolic",
-            }),
-            Widget.Label({
-                label: popups.as(p => p[0]?.summary || ""),
-            }),
-        ],
-    })
-}
-
 
 function Media() {
     const label = Utils.watch("", mpris, "player-changed", () => {
@@ -75,10 +56,10 @@ function Media() {
     })
 
     return Widget.Button({
-        class_name: "media",
-        on_primary_click: () => mpris.getPlayer("")?.playPause(),
-        on_scroll_up: () => mpris.getPlayer("")?.next(),
-        on_scroll_down: () => mpris.getPlayer("")?.previous(),
+        className: "media",
+        onPrimaryClick: () => mpris.getPlayer("")?.playPause(),
+        onSecondaryClick: () => mpris.getPlayer("")?.next(),
+        onMiddleClick: () => mpris.getPlayer("")?.previous(),
         child: Widget.Label({ label }),
     })
 }
@@ -114,7 +95,7 @@ function Volume() {
     })
 
     return Widget.Box({
-        class_name: "volume",
+        className: "volume",
         css: "min-width: 180px",
         children: [icon, slider],
     })
@@ -127,12 +108,12 @@ function BatteryLabel() {
         `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
 
     return Widget.Box({
-        class_name: "battery",
+        className: "battery",
         visible: battery.bind("available"),
         children: [
             Widget.Icon({ icon }),
             Widget.LevelBar({
-                widthRequest: 140,
+                widthRequest: 100,
                 vpack: "center",
                 value,
             }),
@@ -145,8 +126,8 @@ function SysTray() {
     const items = systemtray.bind("items")
         .as(items => items.map(item => Widget.Button({
             child: Widget.Icon({ icon: item.bind("icon") }),
-            on_primary_click: (_, event) => item.activate(event),
-            on_secondary_click: (_, event) => item.openMenu(event),
+            onPrimaryClick: (_, event) => item.activate(event),
+            onSecondaryClick: (_, event) => item.openMenu(event),
             tooltip_markup: item.bind("tooltip_markup"),
         })))
 
@@ -172,7 +153,6 @@ function Center() {
         spacing: 8,
         children: [
             Media(),
-            Notification(),
         ],
     })
 }
@@ -193,14 +173,16 @@ function Right() {
 export function Bar(monitor = 0) {
     return Widget.Window({
         name: `bar-${monitor}`, // name has to be unique
-        class_name: "bar",
+        className: "bar",
         monitor,
         anchor: ["top", "left", "right"],
+		margins: [8, 8, 0, 8],
+		heightRequest: 32,
         exclusivity: "exclusive",
         child: Widget.CenterBox({
-            start_widget: Left(),
-            center_widget: Center(),
-            end_widget: Right(),
+            startWidget: Left(),
+            centerWidget: Center(),
+            endWidget: Right(),
         }),
     })
 }

@@ -1,10 +1,15 @@
 {
   "cyberdream.nvim": { "branch": "main", "commit": "ba25d43d68dd34d31bee88286fb6179df2763c31" },
   "lazy.nvim": { "branch": "main", "commit": "9a374a0fb4d3ac42dac4a129d4bead7252473c77" },
+  "mason-lspconfig.nvim": { "branch": "main", "commit": "58bc9119ca273c0ce5a66fad1927ef0f617bd81b" },
+  "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
+  "mini.completion": { "branch": "main", "commit": "f59f187443cc26371d82a59d4e7490dd028e03c1" },
   "mini.icons": { "branch": "main", "commit": "29a7486087b19998194f7b77042c526efcfafc46" },
+  "nvim-lspconfig": { "branch": "master", "commit": "1ea7c6126a1aa0121098e4f16c04d5dde1a4ba22" },
   "nvim-treesitter": { "branch": "master", "commit": "667b9dbbfa2d0071c5677c429ddcf89fb931b53f" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "34867c69838078df7d6919b130c0541c0b400c47" },
   "oil.nvim": { "branch": "master", "commit": "9e5eb2fcd1dfee2ff30c89273ffff179e42034b9" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
-  "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" }
+  "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
+  "which-key.nvim": { "branch": "main", "commit": "c4689ab39c1f51cac447893b05bb0266a7af1ed7" }
 }
