@@ -1,3 +1,5 @@
+import { Bluetooth } from '../bluetooth/bluetooth.js'
+
 const hyprland = await Service.import("hyprland")
 const mpris = await Service.import("mpris")
 const audio = await Service.import("audio")
@@ -143,7 +145,8 @@ function Left() {
         spacing: 8,
         children: [
             Workspaces(),
-            ClientTitle(),
+            //ClientTitle(),
+			Bluetooth(),
         ],
     })
 }
