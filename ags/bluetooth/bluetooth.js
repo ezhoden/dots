@@ -9,7 +9,7 @@ function BluetoothDevices() {
 export function Bluetooth() {
 	return Widget.Button({
 		className: 'bluetooth',
-		label: bluetooth.state,
+		label: 'bluetooth status: ' + bluetooth.state,
 		onHover: prop => {
 			console.log(prop)
 		}
