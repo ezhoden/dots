@@ -146,7 +146,7 @@ function Left() {
         children: [
             Workspaces(),
             //ClientTitle(),
-			Bluetooth(),
+			//Bluetooth(),
         ],
     })
 }
