@@ -16,6 +16,19 @@ require('lazy').setup({
 		priority = 1000,
 	},
 
+	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
+		'lewis6991/gitsigns.nvim',
+		opts = {
+			signs = {
+				add = { text = '+' },
+				change = { text = '~' },
+				delete = { text = '_' },
+				topdelete = { text = '‾' },
+				changedelete = { text = '~' },
+			},
+		},
+	},
+
 	-- Explorer replacement for easier work with files and directories
 	{
 		'stevearc/oil.nvim',
@@ -25,8 +38,31 @@ require('lazy').setup({
 
 	-- Telescope for finding files
 	{
-		'nvim-telescope/telescope.nvim', tag = '0.1.8',
-		dependencies = { 'nvim-lua/plenary.nvim' }
+		'nvim-telescope/telescope.nvim',
+		event = 'VimEnter',
+		branch = '0.1.x',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+
+			{
+				'nvim-telescope/telescope-fzf-native.nvim',
+
+				-- `build` is used to run some command when the plugin is installed/updated.
+				-- This is only run then, not every time Neovim starts up.
+				build = 'make',
+
+				-- `cond` is a condition used to determine whether this plugin should be
+				-- installed and loaded.
+				cond = function()
+					return vim.fn.executable 'make' == 1
+				end,
+			},
+
+			{ 'nvim-telescope/telescope-ui-select.nvim' },
+
+			-- Useful for getting pretty icons, but requires a Nerd Font.
+			{ 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+		},
 	},
 
 	{ -- Highlight, edit, and navigate code
@@ -40,13 +76,89 @@ require('lazy').setup({
 	},
 
 	-- LSP
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
-	"neovim/nvim-lspconfig",
+	{
+		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+		-- used for completion, annotations and signatures of Neovim apis
+		'folke/lazydev.nvim',
+		ft = 'lua',
+		opts = {
+			library = {
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = 'luvit-meta/library', words = { 'vim%.uv' } },
+			},
+		},
+	},
+
+	{ 'Bilal2453/luvit-meta', lazy = true },
+
+	{
+		-- Main LSP Configuration
+		'neovim/nvim-lspconfig',
+		dependencies = {
+			-- Automatically install LSPs and related tools to stdpath for Neovim
+			{ 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+			'williamboman/mason-lspconfig.nvim',
+			'WhoIsSethDaniel/mason-tool-installer.nvim',
+
+			-- Useful status updates for LSP.
+			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+			{ 'j-hui/fidget.nvim', opts = {} },
+
+			-- Allows extra capabilities provided by nvim-cmp
+			'hrsh7th/cmp-nvim-lsp',
+		},
+	},
 
 	-- Autocompletion
-	{ 'echasnovski/mini.completion', version = false },
+	{
+		'hrsh7th/nvim-cmp',
+		event = 'InsertEnter',
+		dependencies = {
+			-- Snippet Engine & its associated nvim-cmp source
+			{
+			'L3MON4D3/LuaSnip',
+			build = (function()
+				-- Build Step is needed for regex support in snippets.
+				-- This step is not supported in many windows environments.
+				-- Remove the below condition to re-enable on windows.
+				if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+					return
+				end
+				return 'make install_jsregexp'
+			end)(),
+			dependencies = {
+				-- `friendly-snippets` contains a variety of premade snippets.
+				--    See the README about individual language/framework/plugin snippets:
+				--    https://github.com/rafamadriz/friendly-snippets
+				-- {
+				--   'rafamadriz/friendly-snippets',
+				--   config = function()
+				--     require('luasnip.loaders.from_vscode').lazy_load()
+				--   end,
+				-- },
+			},
+			},
+			'saadparwaiz1/cmp_luasnip',
+
+			-- Adds other completion capabilities.
+			--  nvim-cmp does not ship with all sources by default. They are split
+			--  into multiple repos for maintenance purposes.
+			'hrsh7th/cmp-nvim-lsp',
+			'hrsh7th/cmp-path',
+		},
+	},
+
+	-- Harpoon
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" }
+	},
 
 	-- Useful plugin to show you pending keybinds.
 	'folke/which-key.nvim',
+
+  -- Highlight todo, notes, etc in comments
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+
 })
