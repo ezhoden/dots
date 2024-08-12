@@ -49,8 +49,9 @@ function Clock() {
 
 function Media() {
     const label = Utils.watch("", mpris, "player-changed", () => {
-        if (mpris.players[0]) {
-            const { track_artists, track_title } = mpris.players[0]
+		const player = mpris.players.find(p => p.name === "spotify") || mpris.players[0]
+        if (player) {
+            const { track_artists, track_title } = player
             return `${track_artists.join(", ")} - ${track_title}`
         } else {
             return "Nothing is playing"
