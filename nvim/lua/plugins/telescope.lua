@@ -9,6 +9,7 @@ require('telescope').setup({
 -- Enable Telescope extensions if they are installed
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'ui-select')
+pcall(require('telescope').load_extension, 'notify')
 
 -- Telescope keymaps
 local telescope = require('telescope.builtin')
@@ -21,5 +22,6 @@ vim.keymap.set('n', '<leader>sh', telescope.help_tags, { desc = '[S]earch [H]elp
 vim.keymap.set('n', '<leader>sk', telescope.keymaps, { desc = '[S]earch [K]eymaps' })
 vim.keymap.set('n', '<leader>ss', telescope.builtin, { desc = '[S]earch [S]elect Telescope' })
 vim.keymap.set('n', '<leader>sr', telescope.resume, { desc = '[S]earch [R]esume' })
+vim.keymap.set('n', '<leader>sn', require('telescope').extensions.notify.notify, { desc = '[S]how [N]notifications' })
 vim.keymap.set('n', '<leader>?', telescope.oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', telescope.buffers, { desc = '[ ] Find existing buffers' })

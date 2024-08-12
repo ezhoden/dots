@@ -8,5 +8,8 @@ require("plugins.treesitter")
 require("plugins.lsp")
 require("plugins.autocompletion")
 require("plugins.harpoon")
+require("plugins.notify")
+require("plugins.gitsigns")
+require("plugins.neogit")
 
 require("theme")

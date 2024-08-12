@@ -3,13 +3,13 @@ window.notification-popups box.notifications {
 }
 
 .icon {
-    min-width: 68px;
-    min-height: 68px;
+    min-width: 32px;
+    min-height: 32px;
     margin-right: 1em;
 }
 
 .icon image {
-    font-size: 58px;
+    font-size: 42px;
     /* to center the icon */
     margin: 5px;
     color: @theme_fg_color;
@@ -22,8 +22,9 @@ window.notification-popups box.notifications {
 }
 
 .notification {
-    min-width: 350px;
-    border-radius: 11px;
+    min-width: 240px;
+    min-height: 64px;
+    border-radius: 12px;
     padding: 1em;
     margin: .5em;
     border: 1px solid @wm_borders_edge;
@@ -36,7 +37,7 @@ window.notification-popups box.notifications {
 
 .title {
     color: @theme_fg_color;
-    font-size: 1.4em;
+    font-size: 1em;
 }
 
 .body {

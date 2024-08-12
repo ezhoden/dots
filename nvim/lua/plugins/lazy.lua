@@ -16,24 +16,40 @@ require('lazy').setup({
 		priority = 1000,
 	},
 
-	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
-		'lewis6991/gitsigns.nvim',
-		opts = {
-			signs = {
-				add = { text = '+' },
-				change = { text = '~' },
-				delete = { text = '_' },
-				topdelete = { text = '‾' },
-				changedelete = { text = '~' },
-			},
+	-- Git
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",         -- required
+			"sindrets/diffview.nvim",        -- optional - Diff integration
+			"nvim-telescope/telescope.nvim", -- optional
 		},
+		-- config = true
 	},
+
+	'lewis6991/gitsigns.nvim',
 
 	-- Explorer replacement for easier work with files and directories
 	{
 		'stevearc/oil.nvim',
 		opts = {},
 		dependencies = { "echasnovski/mini.icons" },
+	},
+
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- add any options here
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		}
 	},
 
 	-- Telescope for finding files
