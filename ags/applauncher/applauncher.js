@@ -8,15 +8,17 @@ const AppItem = app => Widget.Button({
         App.closeWindow(WINDOW_NAME)
         app.launch()
     },
+	className: "applauncher-item",
     attribute: { app },
     child: Widget.Box({
         children: [
-            //Widget.Icon({
-            //    icon: app.icon_name || "",
-            //    size: 42,
-            //}),
+            Widget.Icon({
+				className: "applauncher-item_icon",
+                icon: app.icon_name || "",
+                size: 16,
+            }),
             Widget.Label({
-                class_name: "title",
+				className: "applauncher-item_title",
                 label: app.name,
                 xalign: 0,
                 vpack: "center",
@@ -26,7 +28,7 @@ const AppItem = app => Widget.Button({
     }),
 })
 
-const Applauncher = ({ width = 500, height = 500, spacing = 8 }) => {
+const Applauncher = () => {
     // list of application buttons
     let applications = query("").map(AppItem)
 
@@ -34,7 +36,6 @@ const Applauncher = ({ width = 500, height = 500, spacing = 8 }) => {
     const list = Widget.Box({
         vertical: true,
         children: applications,
-        spacing,
     })
 
     // repopulate the box, so the most frequent apps are on top of the list
@@ -45,8 +46,8 @@ const Applauncher = ({ width = 500, height = 500, spacing = 8 }) => {
 
     // search entry
     const entry = Widget.Entry({
+		className: "applauncher-input",
         hexpand: true,
-        css: `margin-bottom: ${spacing}px;`,
 
         // to launch the first item on Enter
         on_accept: () => {
@@ -65,16 +66,13 @@ const Applauncher = ({ width = 500, height = 500, spacing = 8 }) => {
     })
 
     return Widget.Box({
+		className: "applauncher",
         vertical: true,
-        css: `margin: ${spacing * 2}px;`,
         children: [
             entry,
-
-            // wrap the list in a scrollable
             Widget.Scrollable({
+				className: "applauncher-list-scroll",
                 hscroll: "never",
-                css: `min-width: ${width}px;`
-                    + `min-height: ${height}px;`,
                 child: list,
             }),
         ],
@@ -95,14 +93,11 @@ const Applauncher = ({ width = 500, height = 500, spacing = 8 }) => {
 // there needs to be only one instance
 export const applauncher = Widget.Window({
     name: WINDOW_NAME,
+	className: "applauncher-container",
     setup: self => self.keybind("Escape", () => {
         App.closeWindow(WINDOW_NAME)
     }),
     visible: false,
     keymode: "exclusive",
-    child: Applauncher({
-        width: 500,
-        height: 500,
-        spacing: 12,
-    }),
+    child: Applauncher(),
 })

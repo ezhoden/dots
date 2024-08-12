@@ -27,8 +27,11 @@ window.notification-popups box.notifications {
     border-radius: 12px;
     padding: 1em;
     margin: .5em;
-    border: 1px solid @wm_borders_edge;
-    background-color: @theme_bg_color;
+    /*border: 1px solid @wm_borders_edge;*/
+    border: 1px solid #5EFF6C;
+	background-color: rgba(0,0,0,0.8);
+	color: #FFFFFF;
+    /*background-color: @theme_bg_color;*/
 }
 
 .notification.critical {
@@ -36,16 +39,16 @@ window.notification-popups box.notifications {
 }
 
 .title {
-    color: @theme_fg_color;
+    /*color: @theme_fg_color;*/
     font-size: 1em;
 }
 
 .body {
-    color: @theme_unfocused_fg_color;
+    /*color: @theme_unfocused_fg_color;*/
 }
 
 .actions .action-button {
-	color: #000000;
+	/*color: #000000;*/
     margin: 0 .4em;
     margin-top: .8em;
 }

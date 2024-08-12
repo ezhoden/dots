@@ -101,6 +101,7 @@ function Volume() {
     })
 
     const slider = Widget.Slider({
+		className: "volume-slider",
         hexpand: true,
         draw_value: false,
         on_change: ({ value }) => audio.speaker.volume = value,
@@ -111,7 +112,7 @@ function Volume() {
 
     return Widget.Box({
         className: "volume",
-        css: "min-width: 180px",
+        css: "min-width: 160px",
         children: [icon, slider],
     })
 }

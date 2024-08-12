@@ -67,3 +67,8 @@ highlight {
 .media-label-playing {
 	font-weight: bold;
 }
+
+.volume-slider trough highlight {
+    background-color: #5EFF6C;
+	border: none;
+}
