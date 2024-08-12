@@ -7,7 +7,7 @@ const battery = await Service.import("battery")
 const systemtray = await Service.import("systemtray")
 
 const date = Variable("", {
-    poll: [1000, 'date "+%H:%M %b %e."'],
+    poll: [1000, 'date "+%H:%M    %e %b %y"'],
 })
 
 // widgets can be only assigned as a child in one container
@@ -123,6 +123,14 @@ function BatteryLabel() {
     })
 }
 
+function Language() {
+	return Widget.Label({
+		setup: self => self.hook(hyprland, (self, device, value) => {
+			self.label = value.slice(0, 2).toLowerCase()
+		}, 'keyboard-layout')
+	})
+}
+
 
 function SysTray() {
     const items = systemtray.bind("items")
@@ -144,6 +152,7 @@ function Left() {
     return Widget.Box({
         spacing: 8,
         children: [
+            Clock(),
             Workspaces(),
             //ClientTitle(),
 			//Bluetooth(),
@@ -166,8 +175,8 @@ function Right() {
         spacing: 8,
         children: [
             Volume(),
-            BatteryLabel(),
-            Clock(),
+            //BatteryLabel(),
+			Language(),
             SysTray(),
         ],
     })

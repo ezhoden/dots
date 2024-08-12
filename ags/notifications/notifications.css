@@ -45,6 +45,7 @@ window.notification-popups box.notifications {
 }
 
 .actions .action-button {
+	color: #000000;
     margin: 0 .4em;
     margin-top: .8em;
 }

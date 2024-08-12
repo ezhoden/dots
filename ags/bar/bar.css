@@ -1,9 +1,13 @@
 window.bar {
 	border-radius: 8px;
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0,0,0,0.6);
 	color: #FFFFFF;
 	/*background-color: @theme_bg_color;*/
 	/*color: @theme_fg_color;*/
+}
+
+.clock {
+	margin-left: 16px;
 }
 
 button {
@@ -23,7 +27,6 @@ button:active {
 
 button:hover {
     /*border-bottom: 3px solid @theme_fg_color;*/
-	font-size: 20px;
 }
 
 label {
@@ -39,10 +42,13 @@ label {
 	border-radius: 0;
 }
 
+.workspaces button:hover {
+    color: #F1FF5E;
+}
+
 .workspaces button.focused {
 	/*background-color: @theme_selected_bg_color;*/
-    background-color: rgba(69,0,146,0.9);
-	border-radius: 8px;
+    border-bottom: 1px solid #5EFF6C;
 }
 
 .client-title {
