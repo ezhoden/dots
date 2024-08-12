@@ -59,3 +59,11 @@ levelbar block,
 highlight {
     min-height: 10px;
 }
+
+.media-label {
+	font-weight: normal;
+}
+
+.media-label-playing {
+	font-weight: bold;
+}

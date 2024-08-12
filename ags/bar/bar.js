@@ -49,10 +49,19 @@ function Clock() {
 
 function Media() {
     const label = Utils.watch("", mpris, "player-changed", () => {
-		const player = mpris.players.find(p => p.name === "spotify") || mpris.players[0]
+		const player = mpris.getPlayer("spotify")
         if (player) {
-            const { track_artists, track_title } = player
-            return `${track_artists.join(", ")} - ${track_title}`
+            const { track_artists, track_title, play_back_status } = player
+			let playback_icon = ''
+			switch(play_back_status) {
+				case 'Playing':
+					playback_icon = '⏵'
+					break;
+				case 'Paused':
+					playback_icon = '⏸'
+					break;
+			}
+            return `${playback_icon} ${track_artists.join(", ")} - ${track_title}`
         } else {
             return "Nothing is playing"
         }
@@ -60,10 +69,13 @@ function Media() {
 
     return Widget.Button({
         className: "media",
-        onPrimaryClick: () => mpris.getPlayer("")?.playPause(),
-        onSecondaryClick: () => mpris.getPlayer("")?.next(),
-        onMiddleClick: () => mpris.getPlayer("")?.previous(),
-        child: Widget.Label({ label }),
+        onPrimaryClick: () => mpris.getPlayer("spotify")?.playPause(),
+        onSecondaryClick: () => mpris.getPlayer("spotify")?.next(),
+        onMiddleClick: () => mpris.getPlayer("spotify")?.previous(),
+        child: Widget.Label({
+			label,
+			className: label.as(v => v.includes('⏵') ? "media-label-playing" : "media-label")
+		}),
     })
 }
 
