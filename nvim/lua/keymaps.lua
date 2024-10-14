@@ -11,3 +11,8 @@ vim.keymap.set("n", "N", "Nzz")
 -- Yank to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = "Yank selected to clipboard" })
 vim.keymap.set({ 'n', 'v' }, '<leader>yy', '"+y', { desc = "Yank line to clipboard" })
+
+-- Diagnostic
+vim.keymap.set('n', '<leader>pd', vim.diagnostic.goto_prev, { desc = "Go to [P]revious [D]iagnostic" })
+vim.keymap.set('n', '<leader>nd', vim.diagnostic.goto_next, { desc = "Go to [N]ext [D]iagnostic" })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
