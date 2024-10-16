@@ -5,3 +5,5 @@
 	autoSetupRemote = true
 [init]
 	defaultBranch = master
+[core]
+	longpaths = false

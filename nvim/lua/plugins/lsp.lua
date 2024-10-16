@@ -137,6 +137,7 @@ local servers = {
 	},
 
 	angularls = {},
+	ts_ls = {},
 	html = {},
 	cssls = {
 		filetypes = { 'html', 'css', 'scss' },
