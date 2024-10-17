@@ -107,6 +107,7 @@ capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp'
 local cssls_capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+local util = require('lspconfig.util')
 local servers = {
 	-- clangd = {},
 	-- gopls = {},
@@ -136,7 +137,9 @@ local servers = {
 		},
 	},
 
-	angularls = {},
+	angularls = {
+		root_dir = util.root_pattern('angular.json', 'project.json')
+	},
 	ts_ls = {},
 	html = {},
 	cssls = {

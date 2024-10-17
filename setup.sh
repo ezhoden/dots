@@ -55,3 +55,9 @@ if [ ! -d "$HOME/.config/wireplumber" ]; then mkdir $HOME/.config/wireplumber; f
 if [ ! -d "$HOME/.config/wireplumber/wireplumber.conf.d" ]; then mkdir $HOME/.config/wireplumber/wireplumber.conf.d; fi
 ln -s $dotfiles/51-mitigate-annoying-profile-switch.conf $HOME/.config/wireplumber/wireplumber.conf.d/
 echo "Bluetooth headset profile switching has been disabled"
+
+echo "source /usr/share/cachyos-fish-config/cachyos-config.fish
+
+if [ (tty) = "/dev/tty1" ]
+    exec Hyprland
+end" > $HOME/.config/fish/config.fish
