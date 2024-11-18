@@ -58,6 +58,8 @@ echo "Bluetooth headset profile switching has been disabled"
 
 echo "source /usr/share/cachyos-fish-config/cachyos-config.fish
 
+set -gx EDITOR nvim
+
 if [ (tty) = "/dev/tty1" ]
     exec Hyprland
 end" > $HOME/.config/fish/config.fish

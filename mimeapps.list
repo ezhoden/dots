@@ -1,10 +1,10 @@
 [Default Applications]
-application/pdf=cachy-browser.desktop
-text/html=cachy-browser.desktop
-x-scheme-handler/http=cachy-browser.desktop
-x-scheme-handler/https=cachy-browser.desktop
-x-scheme-handler/about=cachy-browser.desktop
-x-scheme-handler/unknown=cachy-browser.desktop
+application/pdf=brave-browser.desktop
+text/html=brave-browser.desktop
+x-scheme-handler/http=brave-browser.desktop
+x-scheme-handler/https=brave-browser.desktop
+x-scheme-handler/about=brave-browser.desktop
+x-scheme-handler/unknown=brave-browser.desktop
 
 [Added Associations]
 x-scheme-handler/tonsite=org.telegram.desktop.desktop;
