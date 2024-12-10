@@ -47,6 +47,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		--  For example, in C this would take you to the header.
 		map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+		map('<leader>f', vim.lsp.buf.format, '[F]ormat')
+
+		-- Create a command `:Format` local to the LSP buffer
+		vim.api.nvim_buf_create_user_command(event.buf, 'Format', function(_)
+			vim.lsp.buf.format()
+		end, { desc = 'Format current buffer with LSP' })
+
 		-- The following two autocommands are used to highlight references of the
 		-- word under your cursor when your cursor rests there for a little while.
 		--    See `:help CursorHold` for information about when this is executed
@@ -241,11 +248,11 @@ require('mason-lspconfig').setup({
 -- local lspconfig = require('lspconfig')
 --
 -- lspconfig.angularls.setup({
--- 	filetypes = { 'html', 'typescript' }, 
+-- 	filetypes = { 'html', 'typescript' },
 -- 	on_attach = on_attach,
 -- })
 --
 -- lspconfig.tsserver.setup({
--- 	filetypes = { 'javascript' }, 
+-- 	filetypes = { 'javascript' },
 -- 	on_attach = on_attach,
 -- })

@@ -1,4 +1,10 @@
 require('telescope').setup({
+	defaults = {
+		path_display = { 'tail' },
+		layout_config = {
+		  horizontal = { width = 0.9 }
+		},
+	},
 	extensions = {
 		['ui-select'] = {
 			require('telescope.themes').get_dropdown(),

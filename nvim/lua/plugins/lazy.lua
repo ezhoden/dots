@@ -11,44 +11,55 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 	-- Color scheme
 	{
-		"scottmckendry/cyberdream.nvim",
+		'scottmckendry/cyberdream.nvim',
 		lazy = false,
 		priority = 1000,
 	},
 
 	-- Git
 	{
-		"NeogitOrg/neogit",
+		'NeogitOrg/neogit',
 		dependencies = {
-			"nvim-lua/plenary.nvim",         -- required
-			"sindrets/diffview.nvim",        -- optional - Diff integration
-			"nvim-telescope/telescope.nvim", -- optional
+			'nvim-lua/plenary.nvim', -- required
+			'sindrets/diffview.nvim', -- optional - Diff integration
+			'nvim-telescope/telescope.nvim', -- optional
 		},
 		-- config = true
 	},
 
 	'lewis6991/gitsigns.nvim',
 
+	-- Obsidian
+	{
+		'epwalsh/obsidian.nvim',
+		version = '*', -- recommended, use latest release instead of latest commit
+		lazy = true,
+		ft = 'markdown',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+		},
+	},
+
 	-- Explorer replacement for easier work with files and directories
 	{
 		'stevearc/oil.nvim',
 		opts = {},
-		dependencies = { "echasnovski/mini.icons" },
+		dependencies = { 'echasnovski/mini.icons' },
 	},
 
 	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
+		'folke/noice.nvim',
+		event = 'VeryLazy',
 		opts = {
 			-- add any options here
 		},
 		dependencies = {
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-			"MunifTanjim/nui.nvim",
+			-- if you lazy-load any plugin below, make sure to add proper `module='...'` entries
+			'MunifTanjim/nui.nvim',
 			-- OPTIONAL:
 			--   `nvim-notify` is only needed, if you want to use the notification view.
 			--   If not available, we use `mini` as the fallback
-			"rcarriga/nvim-notify",
+			'rcarriga/nvim-notify',
 		}
 	},
 
@@ -77,7 +88,7 @@ require('lazy').setup({
 			{ 'nvim-telescope/telescope-ui-select.nvim' },
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
-			{ 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+			{ 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
 		},
 	},
 
@@ -105,7 +116,7 @@ require('lazy').setup({
 		},
 	},
 
-	{ 'Bilal2453/luvit-meta', lazy = true },
+	{ 'Bilal2453/luvit-meta',     lazy = true },
 
 	{
 		-- Main LSP Configuration
@@ -118,7 +129,7 @@ require('lazy').setup({
 
 			-- Useful status updates for LSP.
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-			{ 'j-hui/fidget.nvim', opts = {} },
+			{ 'j-hui/fidget.nvim',       opts = {} },
 
 			-- Allows extra capabilities provided by nvim-cmp
 			'hrsh7th/cmp-nvim-lsp',
@@ -132,27 +143,27 @@ require('lazy').setup({
 		dependencies = {
 			-- Snippet Engine & its associated nvim-cmp source
 			{
-			'L3MON4D3/LuaSnip',
-			build = (function()
-				-- Build Step is needed for regex support in snippets.
-				-- This step is not supported in many windows environments.
-				-- Remove the below condition to re-enable on windows.
-				if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-					return
-				end
-				return 'make install_jsregexp'
-			end)(),
-			dependencies = {
-				-- `friendly-snippets` contains a variety of premade snippets.
-				--    See the README about individual language/framework/plugin snippets:
-				--    https://github.com/rafamadriz/friendly-snippets
-				-- {
-				--   'rafamadriz/friendly-snippets',
-				--   config = function()
-				--     require('luasnip.loaders.from_vscode').lazy_load()
-				--   end,
-				-- },
-			},
+				'L3MON4D3/LuaSnip',
+				build = (function()
+					-- Build Step is needed for regex support in snippets.
+					-- This step is not supported in many windows environments.
+					-- Remove the below condition to re-enable on windows.
+					if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+						return
+					end
+					return 'make install_jsregexp'
+				end)(),
+				dependencies = {
+					-- `friendly-snippets` contains a variety of premade snippets.
+					--    See the README about individual language/framework/plugin snippets:
+					--    https://github.com/rafamadriz/friendly-snippets
+					-- {
+					--   'rafamadriz/friendly-snippets',
+					--   config = function()
+					--     require('luasnip.loaders.from_vscode').lazy_load()
+					--   end,
+					-- },
+				},
 			},
 			'saadparwaiz1/cmp_luasnip',
 
@@ -166,15 +177,17 @@ require('lazy').setup({
 
 	-- Harpoon
 	{
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		dependencies = { "nvim-lua/plenary.nvim" }
+		'ThePrimeagen/harpoon',
+		branch = 'harpoon2',
+		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
 
 	-- Useful plugin to show you pending keybinds.
 	'folke/which-key.nvim',
 
-  -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+	-- Highlight todo, notes, etc in comments
+	{ 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
+	-- AI
+	'zbirenbaum/copilot.lua'
 })
