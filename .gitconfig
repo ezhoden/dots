@@ -7,3 +7,4 @@
 	defaultBranch = master
 [core]
 	longpaths = false
+	autocrfl = true
