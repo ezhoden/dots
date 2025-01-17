@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
 ags quit
-ags run
+ags run --gtk4
