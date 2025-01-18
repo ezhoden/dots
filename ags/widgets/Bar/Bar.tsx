@@ -89,7 +89,7 @@ function LanguagesWidget() {
 	const hypr = Hyprland.get_default();
 
 	const lang = Variable<string>('');
-	hypr.connect('keyboard-layout', (_, __, l) => lang.set(l.slice(0, 2).toUpperCase()));
+	const connectId = hypr.connect('keyboard-layout', (_, __, l) => lang.set(l.slice(0, 2).toUpperCase()));
 	// we need to call the command to get the initial value, because the signal is not emitted on startup,
 	// but I still want English to be the default, so I call switchxkblayout again to set it back to English
 	execAsync('hyprctl switchxkblayout current next').then(() => execAsync('hyprctl switchxkblayout current 0')).catch(console.error);
@@ -98,7 +98,10 @@ function LanguagesWidget() {
 		cssClasses: ["Widget", "Language"],
 		label: bind(lang),
 		onClicked: () => execAsync('hyprctl switchxkblayout current next'),
-		onDestroy: () => lang.drop(),
+		onDestroy: () => {
+			lang.drop();
+			hypr.disconnect(connectId)
+		},
 	});
 }
 
