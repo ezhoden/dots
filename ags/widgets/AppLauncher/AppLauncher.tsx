@@ -2,13 +2,12 @@ import { Binding, Variable } from "astal";
 import { App, Astal, Gdk, Widget } from "astal/gtk4";
 import Apps from "gi://AstalApps"
 
-function AppLauncherInput(text: Variable<string>) {
+function AppLauncherInput(input: Variable<string>, output: Variable<string>) {
 	return Widget.Entry({
 		cssClasses: ["AppLauncherInput"],
 		placeholderText: "Search",
-		// TODO: with .get() it doesn't clear text on hide, but without it has recursion and cursor is always at the start, so input works backwards
-		text: text().get(),
-		onChanged: self => text.set(self.text),
+		text: input(),
+		onChanged: self => output.set(self.text),
 	});
 }
 
@@ -34,28 +33,35 @@ function AppLauncherApps(list: Binding<Apps.Application[]>) {
 	});
 }
 
-function AppLauncherContent(text: Variable<string>) {
-	const apps = new Apps.Apps()
-	const list = text(text => apps.exact_query(text).splice(0, 10))
+function AppLauncherContent(searchValue: Variable<string>, inputValue: Variable<string>) {
+	const apps = new Apps.Apps();
+	const list = searchValue(searchValue => apps.exact_query(searchValue).filter(app => app.name.toLowerCase().includes(searchValue.toLowerCase())).splice(0, 10));
 
 	return Widget.Box({
 		cssClasses: ["AppLauncherContent"],
 		vertical: true,
-		children: [AppLauncherInput(text), AppLauncherApps(list)],
+		children: [AppLauncherInput(inputValue, searchValue), AppLauncherApps(list)],
 	});
 }
 
 export default function AppLauncher() {
-	const text = Variable<string>('');
+	// we need two inputs to avoid recursion in AppLauncherInput
+	const searchValue = Variable<string>('');
+	const inputValue = Variable<string>('');
 
 	return Widget.Window({
 		name: "AppLauncher",
 		application: App,
 		cssClasses: ["AppLauncher"],
 		exclusivity: Astal.Exclusivity.IGNORE,
-		child: AppLauncherContent(text),
+		child: AppLauncherContent(searchValue, inputValue),
 		keymode: Astal.Keymode.ON_DEMAND,
-		onHide: () => text.set(''),
+		onHide: () => {
+			// we need to change the input value twice when the window is hidden to trigger input() in entry
+			inputValue.set(searchValue.get());
+			inputValue.set('');
+			searchValue.set('');
+		},
 		onKeyPressed: (self, keyval) => {
 			if (keyval === Gdk.KEY_Escape) {
 				self.hide();
