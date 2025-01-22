@@ -2,6 +2,7 @@ import { App, Astal, Gtk, Gdk, Widget } from "astal/gtk4";
 import { bind, execAsync, GLib, Variable } from "astal";
 import Hyprland from "gi://AstalHyprland";
 import Battery from "gi://AstalBattery";
+import Tray from "gi://AstalTray"
 
 // TODO: find better format for date (maybe with day of the week and/or date)
 //const BAR_DATE_FORMAT = '%a %e %b - %H:%M';
@@ -68,7 +69,17 @@ function WifiWidget() {
 }
 
 function TrayWidget() {
+	const tray = Tray.get_default();
+
 	return Widget.Box({
+		cssClasses: ["Widget", "Tray"],
+		children: bind(tray, 'items').as(items => items.map(item => Widget.MenuButton({
+			cssClasses: ["TrayItem"],
+			tooltipMarkup: bind(item, 'title'),
+			child: Widget.Image({ gicon: bind(item, 'gicon') }),
+			menuModel: bind(item, 'menuModel'),
+			setup: self => self.insert_action_group('dbusmenu', item.actionGroup),
+		}))),
 	});
 }
 
@@ -125,7 +136,7 @@ function BarContentRight() {
 	return Widget.Box({
 		cssClasses: ["BarContentRight"],
 		halign: Gtk.Align.END,
-		children: [TrayWidget(), WifiWidget(), AudioWidget(), LanguagesWidget(), BatteryWidget()],
+		children: [WifiWidget(), AudioWidget(), TrayWidget(), LanguagesWidget(), BatteryWidget()],
 	});
 }
 
