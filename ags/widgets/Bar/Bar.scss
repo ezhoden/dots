@@ -1,0 +1,61 @@
+.Bar {
+  font-family: 'JetBrainsMonoNL Nerd Font Mono';
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.BarContent {
+  margin: 8px;
+  margin-bottom: 0;
+  // TODO: swap bg and fg colors when theme is implemented
+  background-color: var(--view-fg-color);
+  color: var(--view-bg-color);
+  border-radius: var(--window-radius);
+  padding: 0 8px;
+}
+
+.Widget {
+  & + & {
+    margin-left: 8px;
+  }
+}
+
+.Workspace {
+  padding: 0;
+  font-size: 24px;
+  background: transparent;
+
+  &_focused {
+    color: var(--accent-fg-color);
+  }
+
+  & + & {
+    margin-left: 8px;
+  }
+}
+
+.Battery {
+  font-weight: 400;
+}
+
+.Language {
+  padding: 0;
+  font-size: 12px;
+  background: transparent;
+}
+
+.Tray {
+  .toggle {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.TrayItem {
+
+  & + & {
+    margin-left: 8px;
+  }
+}

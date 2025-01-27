@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-pkill ags
-ags
+ags quit
+ags run --gtk4
