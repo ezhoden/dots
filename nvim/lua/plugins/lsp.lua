@@ -145,7 +145,7 @@ local servers = {
 	},
 
 	angularls = {
-		root_dir = util.root_pattern('angular.json', 'project.json')
+		root_dir = util.root_pattern('angular.json', 'project.json', 'tsconfig.base.json', 'nx.json')
 	},
 	ts_ls = {},
 	html = {},

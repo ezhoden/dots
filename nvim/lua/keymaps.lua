@@ -11,6 +11,9 @@ vim.keymap.set("n", "N", "Nzz")
 -- Yank to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = "Yank selected to clipboard" })
 vim.keymap.set({ 'n', 'v' }, '<leader>yy', '"+y', { desc = "Yank line to clipboard" })
+-- vim.keymap.set({ 'n', 'v' }, '<leader>yp', vim.ex, { desc = "Yank current file path to clipboard" })
+-- execute 'let @+ = expand("%")'
+vim.keymap.set({ 'n', 'v' }, '<leader>yp', function() vim.fn.setreg('+', vim.fn.expand('%')) end, { desc = "Yank current file path to clipboard" })
 
 -- Diagnostic
 vim.keymap.set('n', '<leader>pd', vim.diagnostic.goto_prev, { desc = "Go to [P]revious [D]iagnostic" })
