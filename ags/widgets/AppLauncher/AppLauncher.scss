@@ -1,0 +1,14 @@
+.AppLauncher {
+  font-family: 'JetBrainsMonoNL Nerd Font Mono';
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+.AppLauncherContent {
+  min-width: 600px;
+  min-height: 0;
+  background-color: var(--view-fg-color);
+  border-radius: var(--window-radius);
+}

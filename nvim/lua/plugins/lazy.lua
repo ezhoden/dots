@@ -119,6 +119,24 @@ require('lazy').setup({
 	{ 'Bilal2453/luvit-meta',     lazy = true },
 
 	{
+		"Equilibris/nx.nvim",
+
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+		},
+
+		opts = {
+			-- See below for config options
+			nx_cmd_root = "npx nx",
+		},
+
+		-- Plugin will load when you use these keys
+		keys = {
+			{ "<leader>nx", "<cmd>Telescope nx actions<CR>", desc = "nx actions" }
+		},
+	},
+
+	{
 		-- Main LSP Configuration
 		'neovim/nvim-lspconfig',
 		dependencies = {
