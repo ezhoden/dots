@@ -11,7 +11,7 @@ require('plugins.harpoon')
 require('plugins.notify')
 require('plugins.gitsigns')
 require('plugins.neogit')
-require('plugins.obsidian')
+-- require('plugins.obsidian')
 require('plugins.copilot')
 
 require('theme')
