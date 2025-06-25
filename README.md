@@ -1,2 +1,2 @@
-# dots
-My dotfiles
+# Installation
+Clone repo into home dir, cd into dots, run `./setup.sh`

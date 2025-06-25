@@ -1,6 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 dotfiles="$HOME/dots"
+
+source $dotfiles/setup-utils/install-packages.sh
+
+install_packages()
 
 configs=(
 	ags
