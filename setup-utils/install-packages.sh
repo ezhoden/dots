@@ -20,7 +20,7 @@ PACKAGES=(
 )
 
 AUR_PACKAGES=(
-	quickshell
+	aylurs-gtk-shell-git
 )
 
 sudo pacman -Syu --noconfirm "${PACKAGES[@]}"

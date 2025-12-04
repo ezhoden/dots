@@ -5,9 +5,7 @@ dotfiles="$HOME/dots"
 CONFIGS=(
 	ags
 	hypr
-	kitty
 	nvim
-	quickshell
 )
 
 CONFIG_FILES=(
