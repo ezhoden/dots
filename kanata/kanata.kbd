@@ -1,0 +1,19 @@
+(defsrc
+  lalt
+  lsft
+  lmet
+  caps
+  ralt
+  tab
+)
+(defalias
+  meta (tap-hold 300 100 tab lmet) ;; tap: Tab, hold: Left Meta
+)
+(deflayer base
+  lctl ;; Left Alt as Left Ctrl
+  lalt ;; Left Shift as Left Alt
+  lsft ;; Left Meta as Left Shift
+  esc ;; CapsLock as Esc
+  bspc ;; Right Alt as Backspace
+  @meta ;; Tab as Left Meta on hold
+)

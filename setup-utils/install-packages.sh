@@ -21,6 +21,7 @@ PACKAGES=(
 
 AUR_PACKAGES=(
 	aylurs-gtk-shell-git
+	kanata
 )
 
 sudo pacman -Syu --noconfirm "${PACKAGES[@]}"
