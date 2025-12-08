@@ -17,6 +17,7 @@ PACKAGES=(
 	steam
 	nodejs
 	npm
+	wtype
 )
 
 AUR_PACKAGES=(
