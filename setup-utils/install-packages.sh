@@ -17,6 +17,7 @@ PACKAGES=(
 	steam
 	nodejs
 	npm
+	spotify-launcher
 	quickshell
 	wtype
 	zen-browser-bin

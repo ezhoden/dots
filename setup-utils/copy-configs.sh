@@ -4,7 +4,7 @@ dotfiles="$HOME/dots"
 
 CONFIGS=(
 	hypr
-	kanata
+	ghostty
 	nvim
 	quickshell
 )

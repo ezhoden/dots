@@ -10,6 +10,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 	-- Color scheme
+	'shaunsingh/solarized.nvim',
 	{
 		'scottmckendry/cyberdream.nvim',
 		lazy = false,
