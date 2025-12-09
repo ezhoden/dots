@@ -17,11 +17,12 @@ PACKAGES=(
 	steam
 	nodejs
 	npm
+	quickshell
 	wtype
+	zen-browser-bin
 )
 
 AUR_PACKAGES=(
-	aylurs-gtk-shell-git
 	kanata
 )
 

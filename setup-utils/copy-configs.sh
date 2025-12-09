@@ -3,10 +3,10 @@
 dotfiles="$HOME/dots"
 
 CONFIGS=(
-	ags
 	hypr
 	kanata
 	nvim
+	quickshell
 )
 
 CONFIG_FILES=(
