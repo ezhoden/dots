@@ -19,12 +19,16 @@ PACKAGES=(
 	npm
 	spotify-launcher
 	quickshell
+	waybar
 	wtype
 	zen-browser-bin
+	blueman
+	network-manager-applet
 )
 
 AUR_PACKAGES=(
 	kanata
+	vicinae-bin
 )
 
 sudo pacman -Syu --noconfirm "${PACKAGES[@]}"

@@ -7,6 +7,7 @@ CONFIGS=(
 	ghostty
 	nvim
 	quickshell
+	waybar
 )
 
 CONFIG_FILES=(

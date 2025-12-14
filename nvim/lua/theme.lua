@@ -3,4 +3,4 @@
 --     borderless_telescope = false
 -- })
 
-vim.cmd("colorscheme solarized")
+vim.cmd("colorscheme rose-pine")
