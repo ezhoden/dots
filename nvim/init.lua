@@ -13,5 +13,3 @@ require('plugins.gitsigns')
 require('plugins.neogit')
 -- require('plugins.obsidian')
 require('plugins.copilot')
-
-require('theme')
