@@ -2,7 +2,10 @@ input {
     keyboard {
         xkb {
             layout "us, ru"
-            options "grp:alt_shift_toggle, caps:swapescape"
+			// ctrl_shift_toggle is used instead of alt_shift_toggle because swap_lalt_lctl interfere with language swap
+			// LAlt (swapped to LCtrl) + Shift swaps language only if pressed first
+			// LCtrl (swapped to LAlt) + Shift swaps language both ways
+            options "grp:ctrl_shift_toggle,caps:swapescape,ctrl:swap_lalt_lctl"
         }
     }
 
