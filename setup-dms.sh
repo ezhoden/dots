@@ -5,6 +5,7 @@
 #
 PACKAGES=(
 	brave-bin
+	bun
 	neovim
 	telegram-desktop
 	thunar
@@ -15,6 +16,7 @@ PACKAGES=(
 	npm
 	spotify-launcher
 	network-manager-applet
+	xdg-desktop-portal-gnome
 )
 
 AUR_PACKAGES=(
